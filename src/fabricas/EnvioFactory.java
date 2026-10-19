@@ -9,10 +9,11 @@ public abstract class EnvioFactory {
     public abstract Envio crearEnvio(DatosEnvio datos);
 
     public static EnvioFactory getFactory(TipoTransporte tipo) {
-        return switch (tipo) {
-            case AEREO -> new AereoFactory();
-            case TERRESTRE -> new TerrestreFactory();
-            case MARITIMO -> new MaritimoFactory();
-        };
-    }
+    return switch (tipo) {
+        case AEREO -> new AereoFactory();
+        case TERRESTRE -> new TerrestreFactory();
+        case MARITIMO -> new MaritimoFactory();
+        case EXPRESS -> new ExpressFactory();
+    };
+}
 }
