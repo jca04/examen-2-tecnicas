@@ -3,32 +3,23 @@ import controladores.EnvioController;
 import modelos.DatosEnvio;
 import modelos.TipoTransporte;
 import servicios.EnvioService;
-import javax.swing.SwingUtilities;
 
 public class App {
     public static void main(String[] args) {
-        
-        // datos pa que no esté la tabla vacía
+
         DatosEnvio datos1 = new DatosEnvio("10001", "Polimeros Colombia", 1200.0, 400.0);
         EnvioService.agregarEnvio(TipoTransporte.TERRESTRE, datos1);
-        
+
         DatosEnvio datos2 = new DatosEnvio("10002", "Textiles Pepalfa", 500.0, 600.0);
         EnvioService.agregarEnvio(TipoTransporte.TERRESTRE, datos2);
 
         DatosEnvio datos3 = new DatosEnvio("10003", "Flores Colombia", 1500.0, 2000.0);
         EnvioService.agregarEnvio(TipoTransporte.AEREO, datos3);
 
-        //ejecutando la interfaz gráfica en el hilo de eventos de ssswing
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
+        EnvioView vista = new EnvioView();
 
-                EnvioView vista = new EnvioView();
+        EnvioController controlador = new EnvioController(vista);
 
-                EnvioController controlador = new EnvioController(vista);
-
-                controlador.iniciar();
-            }
-        });
+        controlador.iniciar();
     }
 }
